@@ -2,11 +2,6 @@ from typing import List
 
 import random
 
-
-hand = []
-score = 0
-
-
 min_initial_save = 750
 min_subsequent_save = 350
 
@@ -31,18 +26,32 @@ to keep the three 2's for a score of 200. You would type out 1 3 4
 """
 
 def play():
+	score = 0
 	print(how_to_play())
 	x = input("Do you want to roll? ")
 	if x == "Y":
 		dice = roll(6)
 		print(dice)
 		keep = input("Which numbers do you want to keep? ").split()
-		print(f"You kept:  {[dice[int(i) - 1] for i in keep]}")
+		kept = [dice[int(i) - 1] for i in keep]
+		print(f"You kept:  {kept}")
+	
+		score += score_roll(kept)	
+	
+		print(f"score: {score}")
+		
+		#x = input("Do you want to roll? ")
+		#if x == "Y":
+			#dice = roll(6 - len(kept))
+			#print(dice)
+			#quit()
+		
 	else:
 		quit()
 
 
-
+def score_roll(roll: List[int]) -> int:
+	return sum(roll)
 
 def roll(n: int) -> List[int]:
 	return [random.randint(1,6) for _ in range(n)]

@@ -51,7 +51,8 @@ def play():
 
 
 def score_roll(roll: List[int]) -> int:
-	return sum(roll)
+	return 100 * len([_ for _ in roll if _ == 1]) +\
+		50 * len([_ for _ in roll if _ == 5])
 
 def roll(n: int) -> List[int]:
 	return [random.randint(1,6) for _ in range(n)]

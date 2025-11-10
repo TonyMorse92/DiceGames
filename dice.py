@@ -1,12 +1,27 @@
-# Going to make a separate file for the dice 
-# And their basic functions (roll, draw, keep(?)
-# different games have distinct rules, so that may have to be in the game file
+# Dice class for drawing and rolling
+
+# Die? 
+class Dice:
+	def __init__(self, num):
+		self.num = num
+
+	def draw(self):
+		print("""------------------
+		         |		  | 
+                         ------------------
+			""")
 
 
 
-class Dice():
-	pass
+
+def draw():
+	print("""
+---------
+|	| 
+| 	| 
+|	| 
+---------
+		""")
 
 
-
-
+draw()

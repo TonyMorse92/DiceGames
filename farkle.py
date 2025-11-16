@@ -45,35 +45,37 @@ def play():
 def test():
 	# For the straights, I guess I have to check they're order. So sort them first? 
 	# And I guess, small straight only applies to a full 6-die roll? 	
-	x = input("""What do you want to test? 
+	#x = input("""What do you want to test? 
 
-		(1): Failed roll -> [2, 2, 3, 4, 4, 6]
-		(2): Big Straight -> [1, 2, 3, 4, 5, 6]
-		(3): Small Straight -> [1, 2, 3, 4, 5, 2]
-		(4): All same -> [2, 2, 2, 2, 2, 2]
-		(5): Three of kind -> [4, 4, 2, 1, 1, 4]
+	#	(1): Failed roll -> [2, 2, 3, 4, 4, 6]
+	#	(2): Big Straight -> [1, 2, 3, 4, 5, 6]
+	#	(3): Small Straight -> [1, 2, 3, 4, 5, 2]
+	#	(4): All same -> [2, 2, 2, 2, 2, 2]
+	#	(5): Three of kind -> [4, 4, 2, 1, 1, 4]
 		
-		""")
-	test_roll(int(x)) 
-
-
-def test_roll(x):
-	match x:
-		case 1:
-			score_roll([2, 2, 3, 4, 4, 6])
-		case 2:
-			print("You chose 2.")
-		case 3:
-			print("You chose 3.")
-		case 4:
-			print("You chose 4.")
-		case 5:
-			score_roll([4, 4, 2, 1, 1, 4])	
+	#	""")
+#	test_roll(int(x)) 
+	print(f"""
+Roll \t\t\t\t Value \t\t\t Computed Value
+[2, 2, 3, 4, 4, 6] \t\t 0 \t\t\t {score_roll([2, 2, 3, 4, 4, 6])}
+[1, 2, 3, 4, 5, 6] \t\t 1500 \t\t\t {score_roll([1, 2, 3, 4, 5, 6])}
+[1, 2, 3, 4, 5, 2] \t\t 750 \t\t\t {score_roll([1, 2, 3, 4, 5, 2])}
+[2, 2, 2, 2, 2, 2] \t\t 800 \t\t\t {score_roll([2, 2, 2, 2, 2, 2])}
+[4, 4, 2, 1, 1, 4] \t\t 600 \t\t\t {score_roll([4, 4, 2, 1, 1, 4])}
+""")
 
 def score_roll(roll: List[int]) -> int:
-	print([{y: roll.count(y)} for y in set(roll) if roll.count(y) >= 3])	
-	return 100 * len([_ for _ in roll if _ == 1]) +\
-		50 * len([_ for _ in roll if _ == 5])
+	# Check for straights
+	roll.sort()
+	if roll == [1, 2, 3, 4, 5, 6]:
+		return 1500
+	elif set(roll) == {1, 2, 3, 4, 5} or set(roll) == {2, 3, 4, 5, 6}:
+		return 750	
+	else:
+		return 100 * sum([_ for _ in set(roll) if roll.count(_) >= 3]) +\
+			sum([100 * _ * (roll.count(_) - 3) for _ in set(roll) if roll.count(_) >= 3]) +\
+			100 * len([_ for _ in roll if _ == 1]) +\
+			50 * len([_ for _ in roll if _ == 5])
 
 def roll(n: int) -> List[int]:
 	return [random.randint(1,6) for _ in range(n)]

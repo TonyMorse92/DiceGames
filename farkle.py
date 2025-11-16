@@ -49,13 +49,28 @@ def play():
 	else:
 		quit()
 
+def test():
+	x = input("""What do you want to test? """)
+	print(x)	
+	quit()
 
 def score_roll(roll: List[int]) -> int:
+	print([{y: roll.count(y)} for y in roll if roll.count(y) >= 3])	
 	return 100 * len([_ for _ in roll if _ == 1]) +\
 		50 * len([_ for _ in roll if _ == 5])
 
 def roll(n: int) -> List[int]:
 	return [random.randint(1,6) for _ in range(n)]
 
+
+def check_mode() -> None:
+	x = input("Is this a test (T) or are you playing (P)? ")
+	return x
+
+		
 if __name__ == "__main__":
-	play()
+	stat = check_mode()
+	if stat == "T":
+		test()
+	else:
+		play()

@@ -62,6 +62,11 @@ Roll \t\t\t\t Value \t\t\t Computed Value
 [1, 2, 3, 4, 5, 2] \t\t 750 \t\t\t {score_roll([1, 2, 3, 4, 5, 2])}
 [2, 2, 2, 2, 2, 2] \t\t 800 \t\t\t {score_roll([2, 2, 2, 2, 2, 2])}
 [4, 4, 2, 1, 1, 4] \t\t 600 \t\t\t {score_roll([4, 4, 2, 1, 1, 4])}
+[2, 2, 2, 2] \t\t\t 400 \t\t\t {score_roll([2, 2, 2, 2])}
+[4, 2, 1, 1, 4] \t\t 200 \t\t\t {score_roll([4, 2, 1, 1, 4])}
+[2, 2, 1, 2] \t\t\t 300 \t\t\t {score_roll([2, 2, 1, 2])}
+[4, 2] \t\t\t 0 \t\t\t {score_roll([4, 2])}
+[1, 2, 3, 4, 5, 1] \t\t 850 \t\t\t {score_roll([1, 2, 3, 4, 5, 1])}
 """)
 
 def score_roll(roll: List[int]) -> int:

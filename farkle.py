@@ -38,24 +38,40 @@ def play():
 	
 		score += score_roll(kept)	
 	
-		print(f"score: {score}")
-		
-		#x = input("Do you want to roll? ")
-		#if x == "Y":
-			#dice = roll(6 - len(kept))
-			#print(dice)
-			#quit()
-		
+		print(f"score: {score}")	
 	else:
 		quit()
 
 def test():
-	x = input("""What do you want to test? """)
-	print(x)	
-	quit()
+	# For the straights, I guess I have to check they're order. So sort them first? 
+	# And I guess, small straight only applies to a full 6-die roll? 	
+	x = input("""What do you want to test? 
+
+		(1): Failed roll -> [2, 2, 3, 4, 4, 6]
+		(2): Big Straight -> [1, 2, 3, 4, 5, 6]
+		(3): Small Straight -> [1, 2, 3, 4, 5, 2]
+		(4): All same -> [2, 2, 2, 2, 2, 2]
+		(5): Three of kind -> [4, 4, 2, 1, 1, 4]
+		
+		""")
+	test_roll(int(x)) 
+
+
+def test_roll(x):
+	match x:
+		case 1:
+			score_roll([2, 2, 3, 4, 4, 6])
+		case 2:
+			print("You chose 2.")
+		case 3:
+			print("You chose 3.")
+		case 4:
+			print("You chose 4.")
+		case 5:
+			score_roll([4, 4, 2, 1, 1, 4])	
 
 def score_roll(roll: List[int]) -> int:
-	print([{y: roll.count(y)} for y in roll if roll.count(y) >= 3])	
+	print([{y: roll.count(y)} for y in set(roll) if roll.count(y) >= 3])	
 	return 100 * len([_ for _ in roll if _ == 1]) +\
 		50 * len([_ for _ in roll if _ == 5])
 

@@ -65,17 +65,26 @@ Roll \t\t\t\t Value \t\t\t Computed Value
 [2, 2, 2, 2] \t\t\t 400 \t\t\t {score_roll([2, 2, 2, 2])}
 [4, 2, 1, 1, 4] \t\t 200 \t\t\t {score_roll([4, 2, 1, 1, 4])}
 [2, 2, 1, 2] \t\t\t 300 \t\t\t {score_roll([2, 2, 1, 2])}
-[4, 2] \t\t\t 0 \t\t\t {score_roll([4, 2])}
+[4, 2] \t\t\t\t 0 \t\t\t {score_roll([4, 2])}
 [1, 2, 3, 4, 5, 1] \t\t 850 \t\t\t {score_roll([1, 2, 3, 4, 5, 1])}
 """)
 
 def score_roll(roll: List[int]) -> int:
 	# Check for straights
 	roll.sort()
+	# Big straight
 	if roll == [1, 2, 3, 4, 5, 6]:
 		return 1500
+	# Small straight
 	elif set(roll) == {1, 2, 3, 4, 5} or set(roll) == {2, 3, 4, 5, 6}:
-		return 750	
+		# There is probably a better way to do this, but just brute check if there
+		# was an extra 1 or 5
+		if roll.count(1) == 2:
+			return 850
+		elif roll.count(5) == 2:
+			return 800
+		else:		
+			return 750	
 	else:
 		return 100 * sum([_ for _ in set(roll) if roll.count(_) >= 3]) +\
 			sum([100 * _ * (roll.count(_) - 3) for _ in set(roll) if roll.count(_) >= 3]) +\

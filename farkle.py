@@ -56,17 +56,17 @@ def test():
 	#	""")
 #	test_roll(int(x)) 
 	print(f"""
-Roll \t\t\t\t Value \t\t\t Computed Value
-[2, 2, 3, 4, 4, 6] \t\t 0 \t\t\t {score_roll([2, 2, 3, 4, 4, 6])}
-[1, 2, 3, 4, 5, 6] \t\t 1500 \t\t\t {score_roll([1, 2, 3, 4, 5, 6])}
-[1, 2, 3, 4, 5, 2] \t\t 750 \t\t\t {score_roll([1, 2, 3, 4, 5, 2])}
-[2, 2, 2, 2, 2, 2] \t\t 800 \t\t\t {score_roll([2, 2, 2, 2, 2, 2])}
-[4, 4, 2, 1, 1, 4] \t\t 600 \t\t\t {score_roll([4, 4, 2, 1, 1, 4])}
-[2, 2, 2, 2] \t\t\t 400 \t\t\t {score_roll([2, 2, 2, 2])}
-[4, 2, 1, 1, 4] \t\t 200 \t\t\t {score_roll([4, 2, 1, 1, 4])}
-[2, 2, 1, 2] \t\t\t 300 \t\t\t {score_roll([2, 2, 1, 2])}
-[4, 2] \t\t\t\t 0 \t\t\t {score_roll([4, 2])}
-[1, 2, 3, 4, 5, 1] \t\t 850 \t\t\t {score_roll([1, 2, 3, 4, 5, 1])}
+Roll \t\t\t\t Expected Value \t\t Match?
+[2, 2, 3, 4, 4, 6] \t\t 0 \t\t\t\t {score_roll([2, 2, 3, 4, 4, 6]) == 0}
+[1, 2, 3, 4, 5, 6] \t\t 1500 \t\t\t\t {score_roll([1, 2, 3, 4, 5, 6]) == 1500}
+[1, 2, 3, 4, 5, 2] \t\t 750 \t\t\t\t {score_roll([1, 2, 3, 4, 5, 2]) == 750}
+[2, 2, 2, 2, 2, 2] \t\t 800 \t\t\t\t {score_roll([2, 2, 2, 2, 2, 2]) == 800}
+[4, 4, 2, 1, 1, 4] \t\t 600 \t\t\t\t {score_roll([4, 4, 2, 1, 1, 4]) == 600}
+[2, 2, 2, 2] \t\t\t 400 \t\t\t\t {score_roll([2, 2, 2, 2]) == 400}
+[4, 2, 1, 1, 4] \t\t 200 \t\t\t\t {score_roll([4, 2, 1, 1, 4]) == 200}
+[2, 2, 1, 2] \t\t\t 300 \t\t\t\t {score_roll([2, 2, 1, 2]) == 300}
+[4, 2] \t\t\t\t 0 \t\t\t\t {score_roll([4, 2]) == 0}
+[1, 2, 3, 4, 5, 1] \t\t 850 \t\t\t\t {score_roll([1, 2, 3, 4, 5, 1]) == 850}
 """)
 
 def score_roll(roll: List[int]) -> int:

@@ -43,7 +43,7 @@ def play():
 		quit()
 
 def test():
-	# For the straights, I guess I have to check they're order. So sort them first? 
+	# For the straights, I guess I have to check they're in order. So sort them first? 
 	# And I guess, small straight only applies to a full 6-die roll? 	
 	#x = input("""What do you want to test? 
 

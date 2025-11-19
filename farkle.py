@@ -28,33 +28,27 @@ to keep the three 2's for a score of 200. You would type out 1 3 4
 def play():
 	score = 0
 	print(how_to_play())
-	x = input("Do you want to roll? ")
-	if x == "Y":
-		dice = roll(6)
+	keep_rolling = True
+	num_dice = 6
+	while keep_rolling:	
+		dice = roll(num_dice)
 		print(dice)
 		keep = input("Which numbers do you want to keep? ").split()
 		kept = [dice[int(i) - 1] for i in keep]
-		print(f"You kept:  {kept}")
-	
-		score += score_roll(kept)	
-	
-		print(f"score: {score}")	
-	else:
-		quit()
+		score += score_roll(kept)
+		x = input("Do you want to roll or hold? ")
+		if str(x).upper() == "H":
+			keep_rolling = False
+		elif str(x).upper() == "R":
+			# Need to add a check to see if roll failed later
+			if len(kept) == num_dice:
+				num_dice = 6
+			else:
+				num_dice = num_dice - len(kept)
+	print(score)
+	quit()
 
 def test():
-	# For the straights, I guess I have to check they're in order. So sort them first? 
-	# And I guess, small straight only applies to a full 6-die roll? 	
-	#x = input("""What do you want to test? 
-
-	#	(1): Failed roll -> [2, 2, 3, 4, 4, 6]
-	#	(2): Big Straight -> [1, 2, 3, 4, 5, 6]
-	#	(3): Small Straight -> [1, 2, 3, 4, 5, 2]
-	#	(4): All same -> [2, 2, 2, 2, 2, 2]
-	#	(5): Three of kind -> [4, 4, 2, 1, 1, 4]
-		
-	#	""")
-#	test_roll(int(x)) 
 	print(f"""
 Roll \t\t\t\t Expected Value \t\t Match?
 [2, 2, 3, 4, 4, 6] \t\t 0 \t\t\t\t {score_roll([2, 2, 3, 4, 4, 6]) == 0}

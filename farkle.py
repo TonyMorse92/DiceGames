@@ -26,26 +26,30 @@ to keep the three 2's for a score of 200. You would type out 1 3 4
 """
 
 def play():
-	score = 0
+	turn_score = 0
 	print(how_to_play())
 	keep_rolling = True
 	num_dice = 6
-	while keep_rolling:	
+	while keep_rolling:
+		score = 0	
 		dice = roll(num_dice)
 		print(dice)
 		keep = input("Which numbers do you want to keep? ").split()
 		kept = [dice[int(i) - 1] for i in keep]
-		score += score_roll(kept)
+		score = score_roll(kept)
+		if score == 0:
+			print("Roll failed")
+			quit()
+		turn_score += score
 		x = input("Do you want to roll or hold? ")
 		if str(x).upper() == "H":
 			keep_rolling = False
 		elif str(x).upper() == "R":
-			# Need to add a check to see if roll failed later
 			if len(kept) == num_dice:
 				num_dice = 6
 			else:
 				num_dice = num_dice - len(kept)
-	print(score)
+	print(f"Your score: {turn_score}")
 	quit()
 
 def test():

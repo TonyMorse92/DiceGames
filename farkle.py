@@ -38,8 +38,14 @@ def play():
 		kept = [dice[int(i) - 1] for i in keep]
 		score = score_roll(kept)
 		if score == 0:
-			print("Roll failed")
-			quit()
+			y = input(f" You kept: {kept}, which is not a valid score. Was that correct? ")
+			if y == "Y": 	
+				print("Roll failed")
+				quit()
+			else:
+				# This would be a goto
+				# I guess rolling loop can be separated from the checking.
+				pass
 		turn_score += score
 		x = input("Do you want to roll or hold? ")
 		if str(x).upper() == "H":

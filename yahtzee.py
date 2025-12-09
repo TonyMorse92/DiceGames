@@ -46,6 +46,25 @@ def play():
 	print(f"Your score: {turn_score}")
 	quit()
 
+def print_score_sheet() -> None:
+	print(f"""
+Category \t\t Amt?
+Ones \t\t 1}
+Twos \t\t 1}
+Threes \t\t 1}
+Fours \t\t 1}
+Fives \t\t 1}
+Sixes \t\t 1}
+Three of a Kind \t\t 1}
+Four of a Kind \t\t 1}
+Full House \t\t 1}
+Small Straight \t\t 1}
+Large Straight \t\t 1}
+Yahtzee \t\t 1}
+Chance \t\t 1}
+""")
+
+
 def test():
 	print(f"""
 Roll \t\t\t\t Expected Value \t\t Match?
@@ -61,7 +80,45 @@ Roll \t\t\t\t Expected Value \t\t Match?
 [1, 2, 3, 4, 5, 1] \t\t 850 \t\t\t\t {score_roll([1, 2, 3, 4, 5, 1]) == 850}
 """)
 
-def score_roll(roll: List[int]) -> int:
+def score_roll(roll: List[int], category: str) -> int:
+	
+	if category == "Ones":	
+		return sum([_ for _ in roll if _ == 1])
+	elif category == "Twos":
+		return sum([_ for _ in roll if _ == 2])
+	elif category == "Threes":
+		return sum([_ for _ in roll if _ == 3])
+	elif category == "Fours":
+		return sum([_ for _ in roll if _ == 4])
+	elif category == "Fives":
+		return sum([_ for _ in roll if _ == 5])
+	elif category == "Sixes":
+		return sum([_ for _ in roll if _ == 6])
+	elif category == "Three of a Kind":
+		m = sum([_ * (roll.count(_) - 3) for _ in set(roll) if roll.count(_) >= 3])
+		if m > 0:
+			return m
+		else:
+			return -5 # This should eventually check if they are crossing out this cat
+	elif category == "Four of a Kind":
+		m = sum([_ * (roll.count(_) - 3) for _ in set(roll) if roll.count(_) >= 4])
+		if m > 0:
+			return m
+		else:
+			return -5 # This should eventually check if they are crossing out this cat
+	elif category == "Small Straight":
+		return sum([_ for _ in roll if _ == 6])
+	elif category == "Large Straight":
+		return sum([_ for _ in roll if _ == 6])
+	elif category == "Full House":
+		return sum([_ for _ in roll if _ == 6])
+	elif category == "Yahtzee":
+		return sum([_ for _ in roll if _ == 6])
+	elif category == "Chance":
+		return sum(roll)
+
+	
+
 	# Check for straights
 	roll.sort()
 	# Big straight

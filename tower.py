@@ -54,7 +54,15 @@ Roll \t\t\t\t Expected Value \t\t Match?
 """)
 
 def score_roll(roll: List[int]) -> int:
-	return sum([_ for _ in set(roll) if roll.count(_) >= 2])
+	cnt = 0
+	for i in range(len(roll)):
+		if i == 0:
+			pass
+		else:
+			if roll[i] == roll[i -1]:
+				cnt += roll[i]
+
+	return cnt
 
 def roll(n: int) -> List[int]:
 	return [random.randint(1,6) for _ in range(n)]

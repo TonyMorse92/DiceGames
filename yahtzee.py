@@ -7,9 +7,8 @@ def how_to_play() -> str:
 	return """
 ******************************************************************************
 Yahtzee is played like poker hands, but you're trying to collect them all. 
-You have X number of turns (it is the number of types of "hands" there are) to 
-try and collect them. There are also 3 "chance" scores you can take as backups. 
-You get three rolls each time to collect a given "hand".
+You have 13 turns of 3 rolls each to try and get each category. 
+There is also a "chance" score you can take as a backup. 
 ******************************************************************************
 """
 
@@ -49,19 +48,19 @@ def play():
 def print_score_sheet() -> None:
 	print(f"""
 Category \t\t Amt?
-Ones \t\t 1}
-Twos \t\t 1}
-Threes \t\t 1}
-Fours \t\t 1}
-Fives \t\t 1}
-Sixes \t\t 1}
-Three of a Kind \t\t 1}
-Four of a Kind \t\t 1}
-Full House \t\t 1}
-Small Straight \t\t 1}
-Large Straight \t\t 1}
-Yahtzee \t\t 1}
-Chance \t\t 1}
+Ones \t\t 1
+Twos \t\t 1
+Threes \t\t 1
+Fours \t\t 1
+Fives \t\t 1
+Sixes \t\t 1
+Three of a Kind \t\t 1
+Four of a Kind \t\t 1
+Full House \t\t 1
+Small Straight \t\t 1
+Large Straight \t\t 1
+Yahtzee \t\t 1
+Chance \t\t 1
 """)
 
 
@@ -152,6 +151,6 @@ def check_mode() -> None:
 if __name__ == "__main__":
 	stat = check_mode()
 	if stat == "T":
-		test()
+		print_score_sheet()
 	else:
 		play()

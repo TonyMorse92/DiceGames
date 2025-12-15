@@ -29,7 +29,12 @@ def play():
 			num_dice = 6 - len(kept)
 			print(f"Your score: {kept}")
 		keep_rolling = False
+		choose_score(kept)
 	quit()
+
+def choose_score(dice: List[int]) -> None:
+	print(f"Dice: {dice}")
+
 
 def print_score_sheet() -> None:
 	print(f"""

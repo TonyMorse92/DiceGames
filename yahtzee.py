@@ -2,6 +2,7 @@ from typing import List
 
 import random
 
+import Player
 
 def how_to_play() -> str:
 	return """
@@ -32,6 +33,14 @@ def play():
 		choose_score(kept)
 	quit()
 
+# Add bonuses for getting good scores on Singles 
+# and get total score for Singles + Combos
+def cal_round_score(player: Player) -> int:
+	if player.singles_scores >= 63:
+		player.singles_scores += 50
+
+	return player.singles_scores + player.combo_scores
+
 def choose_score(dice: List[int]) -> None:
 	print(f"Dice: {dice}")
 
@@ -57,7 +66,7 @@ Chance \t\t 1
 # Scores are pretty straightforward, so tests will mostly be 
 # "Chance" and then things should be able to be canceled out.
 def test():
-	pass
+	print(f"Score: {score_roll([1, 2, 3, 1, 1], 'Ones')}")
 
 
 def score_roll(roll: List[int], category: str) -> int:
@@ -109,6 +118,7 @@ def check_mode() -> None:
 if __name__ == "__main__":
 	stat = check_mode()
 	if stat == "T":
-		print_score_sheet()
+		test()
+		#print_score_sheet()
 	else:
 		play()

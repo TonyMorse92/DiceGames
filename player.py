@@ -2,7 +2,7 @@
  
 
 class Player:
-	def __init__(self):
+	def __init__(self, singles_scores: int=0, combo_scores: int=0):
 		self.score = 0
 
 

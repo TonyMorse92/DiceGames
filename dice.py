@@ -14,14 +14,16 @@ class Dice:
 
 
 
-def draw():
-	print("""
+def draw(num: str):
+	
+	if num == "one":
+		return """
 ---------
 |	| 
-| 	| 
+|   * 	| 
 |	| 
 ---------
-		""")
+		"""
 
 
-draw()
+print(draw("one"))

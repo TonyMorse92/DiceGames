@@ -2,7 +2,7 @@ from typing import List
 
 import random
 
-import Player
+from player import Player
 
 def how_to_play() -> str:
 	return """
